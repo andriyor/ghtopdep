@@ -99,19 +99,27 @@ def show_result(repos, total_repos_count, more_than_zero_count, destinations, ta
         click.echo(json.dumps(repos))
 
 
+def get_packages(sess, page_url):
+    parsed_node = HTMLParser(sess.get(page_url).text)
+
+    # (name, package_id) pairs, names are not unique
+    packages = []
+    selected_package = None
+    for package_item in parsed_node.css(PACKAGE_SELECTOR):
+        query = parse_qs(urlparse(package_item.attributes.get("href", "")).query)
+        if "package_id" in query:
+            packages.append((package_item.text().strip(), query["package_id"][0]))
+            if package_item.attributes.get("aria-checked") == "true":
+                selected_package = package_item.text().strip()
+    return packages, selected_package
+
+
 def get_page_urls(sess, url, destination, all_packages, package_name=None):
     page_url = "{0}/network/dependents?dependent_type={1}".format(url, destination.upper())
     if not all_packages and not package_name:
         return [page_url]
 
-    parsed_node = HTMLParser(sess.get(page_url).text)
-
-    # (name, package_id) pairs, names are not unique
-    packages = []
-    for package_item in parsed_node.css(PACKAGE_SELECTOR):
-        query = parse_qs(urlparse(package_item.attributes.get("href", "")).query)
-        if "package_id" in query:
-            packages.append((package_item.text().strip(), query["package_id"][0]))
+    packages, _ = get_packages(sess, page_url)
 
     if package_name:
         selected = [(name, package_id) for name, package_id in packages if name == package_name]
@@ -281,3 +289,11 @@ def cli(url, repositories, search, table, rows, minstar, report, description, al
                 click.echo("{0} with {1} stars".format(s.html_url, repo["stars"]))
     else:
         show_result(sorted_repos, total_repos_count, more_than_zero_count, destinations, table)
+
+    if not all_packages and not package_name:
+        packages, selected_package = get_packages(sess, page_urls[0])
+        if len(packages) > 1:
+            scraped = "package '{0}'".format(selected_package) if selected_package else "the package selected by GitHub"
+            click.echo("Only {0} was scraped, but this repository lists {1} packages: {2}\n"
+                       "Use --package-name NAME to scrape another package, or --all-packages to scrape all of them."
+                       .format(scraped, len(packages), ", ".join(name for name, _ in packages)), err=True)
