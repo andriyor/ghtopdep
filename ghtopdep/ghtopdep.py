@@ -54,12 +54,6 @@ class OneDayHeuristic(BaseHeuristic):
         return "110 - {0}".format(msg)
 
 
-def already_added(repo_url, repos):
-    for repo in repos:
-        if repo['url'] == repo_url:
-            return True
-
-
 def fetch_description(gh, relative_url):
     _, owner, repository = relative_url.split("/")
     repository = gh.repository(owner, repository)
@@ -179,12 +173,20 @@ def cli(url, repositories, search, table, rows, minstar, report, description, to
 
     pbar = tqdm(total=max_deps)
 
+    seen_repo_urls = set()
+
     while True:
         response = sess.get(page_url)
         parsed_node = HTMLParser(response.text)
         dependents = parsed_node.css(ITEM_SELECTOR)
-        total_repos_count += len(dependents)
         for dep in dependents:
+            repo_link = dep.css_first(REPO_SELECTOR)
+            if repo_link:
+                if repo_link.attributes["href"] in seen_repo_urls:
+                    continue
+                seen_repo_urls.add(repo_link.attributes["href"])
+            total_repos_count += 1
+
             repo_stars_list = dep.css(STARS_SELECTOR)
             # only for ghost or private? packages
             if repo_stars_list:
@@ -197,11 +199,9 @@ def cli(url, repositories, search, table, rows, minstar, report, description, to
                 more_than_zero_count += 1
             if repo_stars_num >= minstar:
                 relative_repo_url = dep.css(REPO_SELECTOR)[0].attributes["href"]
-                repo_url = "{0}{1}".format(GITHUB_URL, relative_repo_url)
+                repo_url ="{0}{1}".format(GITHUB_URL, relative_repo_url)
 
-                # can be listed same package
-                is_already_added = already_added(repo_url, repos)
-                if not is_already_added and repo_url != url:
+                if repo_url != url:
                     if description:
                         repo_description = fetch_description(gh, relative_repo_url)
                         repos.append({
