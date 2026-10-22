@@ -5,7 +5,7 @@ import sys
 import textwrap
 import datetime
 from email.utils import formatdate, parsedate
-from urllib.parse import urlparse
+from urllib.parse import parse_qs, urlencode, urlparse
 
 import appdirs
 import click
@@ -28,6 +28,7 @@ NEXT_BUTTON_SELECTOR = "#dependents > div.paginate-container > div > a"
 ITEM_SELECTOR = "#dependents > div.Box > div.flex-items-center"
 REPO_SELECTOR = "span > a.text-bold"
 STARS_SELECTOR = "div > span:nth-child(1)"
+PACKAGE_SELECTOR = ".select-menu-item"
 GITHUB_URL = "https://github.com"
 REPOS_PER_PAGE = 30
 
@@ -98,6 +99,25 @@ def show_result(repos, total_repos_count, more_than_zero_count, destinations, ta
         click.echo(json.dumps(repos))
 
 
+def get_page_urls(sess, url, destination, all_packages):
+    page_url = "{0}/network/dependents?dependent_type={1}".format(url, destination.upper())
+    if not all_packages:
+        return [page_url]
+
+    parsed_node = HTMLParser(sess.get(page_url).text)
+
+    # (name, package_id) pairs, names are not unique
+    packages = []
+    for package_item in parsed_node.css(PACKAGE_SELECTOR):
+        query = parse_qs(urlparse(package_item.attributes.get("href", "")).query)
+        if "package_id" in query:
+            packages.append((package_item.text().strip(), query["package_id"][0]))
+
+    if not packages:
+        return [page_url]
+    return ["{0}&{1}".format(page_url, urlencode({"package_id": package_id})) for _, package_id in packages]
+
+
 def get_max_deps(sess, url):
     main_response = sess.get(url)
     parsed_node = HTMLParser(main_response.text)
@@ -117,8 +137,13 @@ def get_max_deps(sess, url):
 @click.option("--rows", default=10, help="Number of showing repositories (default=10)")
 @click.option("--minstar", default=5, help="Minimum number of stars (default=5)")
 @click.option("--search", help="search code at dependents (repositories/packages)")
+@click.option("--all-packages", is_flag=True, help="Merge dependents of all packages listed for the repository "
+                                                  "(default: only the package GitHub selects)")
 @click.option("--token", envvar="GHTOPDEP_TOKEN")
-def cli(url, repositories, search, table, rows, minstar, report, description, token):
+def cli(url, repositories, search, table, rows, minstar, report, description, all_packages, token):
+    if report and all_packages:
+        raise click.UsageError("--report and --all-packages are mutually exclusive")
+
     MODE = os.environ.get("GHTOPDEP_ENV")
     BASE_URL = 'http://159.223.231.170'
     if MODE == "development":
@@ -167,64 +192,65 @@ def cli(url, repositories, search, table, rows, minstar, report, description, to
     sess.mount("http://", adapter)
     sess.mount("https://", adapter)
 
-    page_url = "{0}/network/dependents?dependent_type={1}".format(url, destination.upper())
-    
-    max_deps = get_max_deps(sess, page_url)
+    page_urls = get_page_urls(sess, url, destination, all_packages)
+
+    max_deps = sum(get_max_deps(sess, page_url) for page_url in page_urls)
 
     pbar = tqdm(total=max_deps)
 
     seen_repo_urls = set()
 
-    while True:
-        response = sess.get(page_url)
-        parsed_node = HTMLParser(response.text)
-        dependents = parsed_node.css(ITEM_SELECTOR)
-        for dep in dependents:
-            repo_link = dep.css_first(REPO_SELECTOR)
-            if repo_link:
-                if repo_link.attributes["href"] in seen_repo_urls:
+    for page_url in page_urls:
+        while True:
+            response = sess.get(page_url)
+            parsed_node = HTMLParser(response.text)
+            dependents = parsed_node.css(ITEM_SELECTOR)
+            for dep in dependents:
+                repo_link = dep.css_first(REPO_SELECTOR)
+                if repo_link:
+                    if repo_link.attributes["href"] in seen_repo_urls:
+                        continue
+                    seen_repo_urls.add(repo_link.attributes["href"])
+                total_repos_count += 1
+
+                repo_stars_list = dep.css(STARS_SELECTOR)
+                # only for ghost or private? packages
+                if repo_stars_list:
+                    repo_stars = repo_stars_list[0].text().strip()
+                    repo_stars_num = int(repo_stars.replace(",", ""))
+                else:
                     continue
-                seen_repo_urls.add(repo_link.attributes["href"])
-            total_repos_count += 1
 
-            repo_stars_list = dep.css(STARS_SELECTOR)
-            # only for ghost or private? packages
-            if repo_stars_list:
-                repo_stars = repo_stars_list[0].text().strip()
-                repo_stars_num = int(repo_stars.replace(",", ""))
-            else:
-                continue
+                if repo_stars_num != 0:
+                    more_than_zero_count += 1
+                if repo_stars_num >= minstar:
+                    relative_repo_url = dep.css(REPO_SELECTOR)[0].attributes["href"]
+                    repo_url = "{0}{1}".format(GITHUB_URL, relative_repo_url)
 
-            if repo_stars_num != 0:
-                more_than_zero_count += 1
-            if repo_stars_num >= minstar:
-                relative_repo_url = dep.css(REPO_SELECTOR)[0].attributes["href"]
-                repo_url ="{0}{1}".format(GITHUB_URL, relative_repo_url)
+                    if repo_url != url:
+                        if description:
+                            repo_description = fetch_description(gh, relative_repo_url)
+                            repos.append({
+                                "url": repo_url,
+                                "stars": repo_stars_num,
+                                "description": repo_description
+                            })
+                        else:
+                            repos.append({
+                                "url": repo_url,
+                                "stars": repo_stars_num
+                            })
 
-                if repo_url != url:
-                    if description:
-                        repo_description = fetch_description(gh, relative_repo_url)
-                        repos.append({
-                            "url": repo_url,
-                            "stars": repo_stars_num,
-                            "description": repo_description
-                        })
-                    else:
-                        repos.append({
-                            "url": repo_url,
-                            "stars": repo_stars_num
-                        })
+            pagination_buttons = parsed_node.css(NEXT_BUTTON_SELECTOR)
 
-        pagination_buttons = parsed_node.css(NEXT_BUTTON_SELECTOR)
+            if len(pagination_buttons) == 2:
+                page_url = pagination_buttons[1].attributes["href"]
+            elif pagination_buttons and pagination_buttons[0].text() == "Next":
+                page_url = pagination_buttons[0].attributes["href"]
+            elif len(pagination_buttons) == 0 or pagination_buttons[0].text() == "Previous":
+                break
 
-        if len(pagination_buttons) == 2:
-            page_url = pagination_buttons[1].attributes["href"]
-        elif pagination_buttons and pagination_buttons[0].text() == "Next":
-            page_url = pagination_buttons[0].attributes["href"]
-        elif len(pagination_buttons) == 0 or pagination_buttons[0].text() == "Previous":
-            break
-
-        pbar.update(REPOS_PER_PAGE)
+            pbar.update(REPOS_PER_PAGE)
 
     pbar.close()
 
