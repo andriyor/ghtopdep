@@ -99,9 +99,9 @@ def show_result(repos, total_repos_count, more_than_zero_count, destinations, ta
         click.echo(json.dumps(repos))
 
 
-def get_page_urls(sess, url, destination, all_packages):
+def get_page_urls(sess, url, destination, all_packages, package_name=None):
     page_url = "{0}/network/dependents?dependent_type={1}".format(url, destination.upper())
-    if not all_packages:
+    if not all_packages and not package_name:
         return [page_url]
 
     parsed_node = HTMLParser(sess.get(page_url).text)
@@ -112,6 +112,15 @@ def get_page_urls(sess, url, destination, all_packages):
         query = parse_qs(urlparse(package_item.attributes.get("href", "")).query)
         if "package_id" in query:
             packages.append((package_item.text().strip(), query["package_id"][0]))
+
+    if package_name:
+        selected = [(name, package_id) for name, package_id in packages if name == package_name]
+        if not selected:
+            raise click.BadParameter(
+                "no package named '{0}', available packages: {1}".format(
+                    package_name, ", ".join(name for name, _ in packages) or "none"),
+                param_hint="--package-name")
+        packages = selected
 
     if not packages:
         return [page_url]
@@ -139,10 +148,13 @@ def get_max_deps(sess, url):
 @click.option("--search", help="search code at dependents (repositories/packages)")
 @click.option("--all-packages", is_flag=True, help="Merge dependents of all packages listed for the repository "
                                                   "(default: only the package GitHub selects)")
+@click.option("--package-name", help="Only scrape the package with this exact name")
 @click.option("--token", envvar="GHTOPDEP_TOKEN")
-def cli(url, repositories, search, table, rows, minstar, report, description, all_packages, token):
-    if report and all_packages:
-        raise click.UsageError("--report and --all-packages are mutually exclusive")
+def cli(url, repositories, search, table, rows, minstar, report, description, all_packages, package_name, token):
+    if report and (all_packages or package_name):
+        raise click.UsageError("--report can't be combined with --all-packages or --package-name")
+    if all_packages and package_name:
+        raise click.UsageError("--package-name and --all-packages are mutually exclusive")
 
     MODE = os.environ.get("GHTOPDEP_ENV")
     BASE_URL = 'http://159.223.231.170'
@@ -192,7 +204,7 @@ def cli(url, repositories, search, table, rows, minstar, report, description, al
     sess.mount("http://", adapter)
     sess.mount("https://", adapter)
 
-    page_urls = get_page_urls(sess, url, destination, all_packages)
+    page_urls = get_page_urls(sess, url, destination, all_packages, package_name)
 
     max_deps = sum(get_max_deps(sess, page_url) for page_url in page_urls)
 

@@ -99,6 +99,7 @@ Options:
   --all-packages               Merge dependents of all packages listed for the
                                repository (default: only the package GitHub
                                selects)
+  --package-name TEXT          Only scrape the package with this exact name
   --token TEXT
   --help                       Show this message and exit.
 ```
