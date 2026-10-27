@@ -96,6 +96,10 @@ Options:
   --minstar INTEGER            Minimum number of stars (default=5)
   --search TEXT                search code at dependents
                                (repositories/packages)
+  --all-packages               Merge dependents of all packages listed for the
+                               repository (default: only the package GitHub
+                               selects)
+  --package-name TEXT          Only scrape the package with this exact name
   --token TEXT
   --help                       Show this message and exit.
 ```
