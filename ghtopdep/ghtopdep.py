@@ -10,17 +10,15 @@ from urllib.parse import parse_qs, urlencode, urlparse
 import appdirs
 import click
 import github3
-import pipdate
 import requests
 from urllib3.util.retry import Retry
 from cachecontrol.caches import FileCache
 from cachecontrol.heuristics import BaseHeuristic
 from cachecontrol import CacheControl, CacheControlAdapter
 from tqdm import tqdm
-from selectolax.parser import HTMLParser
+from selectolax.lexbor import LexborHTMLParser
 from tabulate import tabulate
 
-from ghtopdep import __version__
 
 PACKAGE_NAME = "ghtopdep"
 CACHE_DIR = appdirs.user_cache_dir(PACKAGE_NAME)
@@ -31,11 +29,6 @@ STARS_SELECTOR = "div > span:nth-child(1)"
 PACKAGE_SELECTOR = ".select-menu-item"
 GITHUB_URL = "https://github.com"
 REPOS_PER_PAGE = 30
-
-if pipdate.needs_checking(PACKAGE_NAME):
-    msg = pipdate.check(PACKAGE_NAME, __version__.__version__)
-    click.echo(msg)
-
 
 class OneDayHeuristic(BaseHeuristic):
     cacheable_by_default_statuses = {
@@ -100,7 +93,7 @@ def show_result(repos, total_repos_count, more_than_zero_count, destinations, ta
 
 
 def get_packages(sess, page_url):
-    parsed_node = HTMLParser(sess.get(page_url).text)
+    parsed_node = LexborHTMLParser(sess.get(page_url).text)
 
     # (name, package_id) pairs, names are not unique
     packages = []
@@ -137,7 +130,7 @@ def get_page_urls(sess, url, destination, all_packages, package_name=None):
 
 def get_max_deps(sess, url):
     main_response = sess.get(url)
-    parsed_node = HTMLParser(main_response.text)
+    parsed_node = LexborHTMLParser(main_response.text)
 
     deps_count_element = parsed_node.css_first('.table-list-header-toggle .btn-link.selected')
     max_deps = int(deps_count_element.text().strip().split()[0].replace(',', ''))
@@ -223,7 +216,7 @@ def cli(url, repositories, search, table, rows, minstar, report, description, al
     for page_url in page_urls:
         while True:
             response = sess.get(page_url)
-            parsed_node = HTMLParser(response.text)
+            parsed_node = LexborHTMLParser(response.text)
             dependents = parsed_node.css(ITEM_SELECTOR)
             for dep in dependents:
                 repo_link = dep.css_first(REPO_SELECTOR)

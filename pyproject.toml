@@ -7,24 +7,23 @@ license = "MIT"
 readme = "README.md"
 
 [tool.poetry.urls]
-"Source" = "https://github.com/github-tooling/ghtopdep"
-"Bug Tracker" = "https://github.com/github-tooling/ghtopdep/issues"
+"Source" = "https://github.com/andriyor/ghtopdep"
+"Bug Tracker" = "https://github.com/andriyor/ghtopdep/issues"
 
 [tool.poetry.dependencies]
-python = "^3.7"
-selectolax = "^0.3.7"
-tabulate = "^0.8.3"
-click = "^8.1.2"
-requests = "^2.22"
+python = ">=3.10,<3.16"
+selectolax = "^1.0.2"
+tabulate = "^0.10.0"
+click = "^8.5.0"
+requests = "^2.34.2"
 "github3.py" = "^4.0.1"
 appdirs = "^1.4.4"
-pipdate = "^0.5.6"
-cachecontrol = {extras = ["filecache"], version = "^0.14.0"}
-tqdm = "^4.66.4"
+cachecontrol = {extras = ["filecache"], version = "^0.14.4"}
+tqdm = "^4.70.1"
 
 [tool.poetry.dev-dependencies]
-better_exceptions = "^0.2.2"
-pysnooper = "^0.3.0"
+better_exceptions = "^0.3.3"
+pysnooper = "^1.2.3"
 
 [tool.poetry.scripts]
 ghtopdep = 'ghtopdep.ghtopdep:cli'

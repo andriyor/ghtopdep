@@ -8,8 +8,7 @@ CLI tool for sorting dependents repo by stars
 
 ## Requirements
 
-- Python 3.5 and up
-- Python development libraries
+- Python 3.10 and up
 
 ## Installation
 
@@ -22,15 +21,15 @@ $ pip install ghtopdep
 ### From git repository
 
 ```sh
-$ pip install git+https://github.com/github-tooling/ghtopdep.git#egg=ghtopdep
+$ pip install git+https://github.com/andriyor/ghtopdep.git#egg=ghtopdep
 ```
 
 ### From source
 
 ```sh
-$ git clone https://github.com/github-tooling/ghtopdep
+$ git clone https://github.com/andriyor/ghtopdep
 $ cd ghtopdep
-$ python setup.py install
+$ pip install .
 ```
 
 ### Using docker (from source)
@@ -38,7 +37,7 @@ $ python setup.py install
 First `docker build` the image once:
 
 ```sh
-$ git clone https://github.com/github-tooling/ghtopdep
+$ git clone https://github.com/andriyor/ghtopdep
 $ cd ghtopdep
 $ docker build . -t ghtopdep
 ```
@@ -47,20 +46,6 @@ Then you can `docker run` it:
 
 ```sh
 $ docker run --rm -it ghtopdep --help
-```
-
-## Python development Installation
-
-### Ubuntu/Debian
-
-```sh
-sudo apt install python3-dev
-```
-
-### CentOS/RHEL
-
-```sh
-sudo yum install python3-devel
 ```
 
 ## Version upgrade
