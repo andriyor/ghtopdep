@@ -247,18 +247,10 @@ def cli(url, repositories, search, table, rows, minstar, report, description, al
                     repo_url = "{0}{1}".format(GITHUB_URL, relative_repo_url)
 
                     if repo_url != url:
-                        if description:
-                            repo_description = fetch_description(gh, relative_repo_url)
-                            repos.append({
-                                "url": repo_url,
-                                "stars": repo_stars_num,
-                                "description": repo_description
-                            })
-                        else:
-                            repos.append({
-                                "url": repo_url,
-                                "stars": repo_stars_num
-                            })
+                        repos.append({
+                            "url": repo_url,
+                            "stars": repo_stars_num
+                        })
 
             pagination_buttons = parsed_node.css(NEXT_BUTTON_SELECTOR)
 
@@ -280,6 +272,11 @@ def cli(url, repositories, search, table, rows, minstar, report, description, al
             click.echo(e)
 
     sorted_repos = sort_repos(repos, rows)
+
+    # only for displayed repos: one API call per repo
+    if description:
+        for repo in sorted_repos:
+            repo["description"] = fetch_description(gh, urlparse(repo["url"]).path)
 
     if search:
         for repo in repos:
