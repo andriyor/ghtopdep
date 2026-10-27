@@ -100,49 +100,48 @@ Options:
 ### Table view (by default)
 
 ```sh
-➜ ghtopdep https://github.com/dropbox/dropbox-sdk-js
-| url                                               | stars   |
-|---------------------------------------------------|---------|
-| https://github.com/transloadit/uppy               | 21K     |
-| https://github.com/codesandbox/codesandbox-client | 8.6K    |
-| https://github.com/joemccann/dillinger            | 6.5K    |
-| https://github.com/keplergl/kepler.gl             | 5.8K    |
-| https://github.com/jitsi/jitsi-meet               | 4.5K    |
-| https://github.com/jsbin/jsbin                    | 4.0K    |
-| https://github.com/NorthwoodsSoftware/GoJS        | 3.8K    |
-| https://github.com/buttercup/buttercup-desktop    | 3.1K    |
-| https://github.com/openstyles/stylus              | 2.3K    |
-| https://github.com/mickael-kerjean/filestash      | 2.0K    |
-found 1660 repositories others repositories are private
-found 443 repositories with more than zero star
-~ via ⬢ v12.5.0 via 🐘 v7.2.19 via 🐍 3.8.0 took 2m 57s
+➜ ghtopdep https://github.com/rob-balfre/svelte-select
+| url                                              | stars   |
+|--------------------------------------------------|---------|
+| https://github.com/dbgate/dbgate                 | 7.4K    |
+| https://github.com/workadventure/workadventure   | 5.9K    |
+| https://github.com/libredirect/browser_extension | 4.1K    |
+| https://github.com/xianfei/SysMocap              | 3.2K    |
+| https://github.com/ananthakumaran/paisa          | 3.2K    |
+| https://github.com/remult/remult                 | 3.2K    |
+| https://github.com/goniszewski/grimoire          | 2.9K    |
+| https://github.com/sparrowapp-dev/sparrow-app    | 2.5K    |
+| https://github.com/rogchap/wombat                | 1.4K    |
+| https://github.com/josdejong/svelte-jsoneditor   | 1.3K    |
+found 1156 repositories others repositories are private
+found 415 repositories with more than zero star
 ```
 
 ### JSON view
 
 ```sh
-➜ ghtopdep https://github.com/dropbox/dropbox-sdk-js --json
-[{"url": "https://github.com/transloadit/uppy", "stars": 21191}, {"url": "https://github.com/codesandbox/codesandbox-client", "stars": 8386}, {"url": "https://github.com/joemccann/dillinger", "stars": 6491}, {"url": "https://github.com/keplergl/kepler.gl", "stars": 5615}, {"url": "https://github.com/jitsi/jitsi-meet", "stars": 4303}, {"url": "https://github.com/jsbin/jsbin", "stars": 3947}, {"url": "https://github.com/NorthwoodsSoftware/GoJS", "stars": 3692}, {"url": "https://github.com/buttercup/buttercup-desktop", "stars": 3054}, {"url": "https://github.com/openstyles/stylus", "stars": 2219}, {"url": "https://github.com/mickael-kerjean/filestash", "stars": 1869}]
+➜ ghtopdep https://github.com/rob-balfre/svelte-select --json
+[{"url": "https://github.com/dbgate/dbgate", "stars": 7353}, {"url": "https://github.com/workadventure/workadventure", "stars": 5888}, {"url": "https://github.com/libredirect/browser_extension", "stars": 4096}, {"url": "https://github.com/xianfei/SysMocap", "stars": 3239}, {"url": "https://github.com/ananthakumaran/paisa", "stars": 3229}, {"url": "https://github.com/remult/remult", "stars": 3214}, {"url": "https://github.com/goniszewski/grimoire", "stars": 2877}, {"url": "https://github.com/sparrowapp-dev/sparrow-app", "stars": 2548}, {"url": "https://github.com/rogchap/wombat", "stars": 1429}, {"url": "https://github.com/josdejong/svelte-jsoneditor", "stars": 1271}]
 ```
 
 you can sort packages and fetch their description
 
 ```sh
-➜ ghtopdep https://github.com/dropbox/dropbox-sdk-js --description --packages
-| url                                            | stars   | description                                                  |
-|------------------------------------------------|---------|--------------------------------------------------------------|
-| https://github.com/jsbin/jsbin                 | 4.0K    | Collaborative JavaScript Debugging App                       |
-| https://github.com/jvilk/BrowserFS             | 1.9K    | BrowserFS is an in-browser filesystem that emulates the...   |
-| https://github.com/coderaiser/cloudcmd         | 1.1K    | ✨☁️📁✨ Cloud Commander file manager for the web with...       |
-| https://github.com/node-red/node-red-web-nodes | 153     | A collection of node-red nodes aimed at web services         |
-| https://github.com/robertknight/passcards      | 133     | A 1Password-compatible command-line and web-based...         |
-| https://github.com/enyojs/ares-project         | 125     | A browser-based code editor and UI designer for Enyo 2...    |
-| https://github.com/transloadit/uppy-server     | 114     | [DEPRECATED] 'Uppy Server' was renamed to 'Companion' and... |
-| https://github.com/bioimagesuiteweb/bisweb     | 34      | This is the repository for the BioImage Suite Web Project    |
-| https://github.com/sallar/dropbox-fs           | 30      | :package: Node FS wrapper for Dropbox                        |
-| https://github.com/filefog/filefog             | 26      | A thin cloud-service agnostic wrapper/interface to access... |
-found 140 packages others packages are private
-found 61 packages with more than zero star
+➜ ghtopdep https://github.com/rob-balfre/svelte-select --description --packages
+| url                                                                    | stars   | description                                                  |
+|------------------------------------------------------------------------|---------|--------------------------------------------------------------|
+| https://github.com/dbgate/dbgate                                       | 7.4K    | Database manager for MySQL, PostgreSQL, SQL Server,...       |
+| https://github.com/josdejong/svelte-jsoneditor                         | 1.3K    | A web-based tool to view, edit, format, repair, query,...    |
+| https://github.com/Obsidian-TTRPG-Community/fantasy-statblocks         | 501     | Create Dungeons and Dragons style statblocks for Obsidian.md |
+| https://github.com/insodoc/insomnia-documenter                         | 497     | Tool to create minimalist and beautiful API documentation... |
+| https://github.com/pragmatic-engineering/svelte-form-builder-community | 74      | No-code Drag n Drop Form Builder for Svelte                  |
+| https://github.com/sveltekit/ui                                        | 62      | Powerful, reliable & fully featured Svelte UI library        |
+| https://github.com/EMPTYVOID-DEV/Altron                                | 23      | Rich text editor as a svelte component                       |
+| https://github.com/BEXIS2/Core                                         | 16      | This is the public code repository of the BEXIS2 data...     |
+| https://github.com/tilde-lab/optimade.science                          | 10      | A "sky-scanner" Optimade browser-only GUI                    |
+| https://github.com/invopop/gobl.builder                                | 9       | GOBL Builder is an interactive, low code tool for...         |
+found 69 packages others packages are private
+found 22 packages with more than zero star
 ```
 
 also ghtopdep support code searching at dependents (repositories/packages)
@@ -151,14 +150,14 @@ also ghtopdep support code searching at dependents (repositories/packages)
 so larger `--rows` values make ghtopdep pause and wait.
 
 ```sh
-➜ ghtopdep https://github.com/rob-balfre/svelte-select --search=isMulti --minstar=0
-https://github.com/andriyor/linkorg-frontend/blob/7eed49c332f127c8541281b85def80e54c882920/src/App.svelte with 0 stars
-https://github.com/andriyor/linkorg-frontend/blob/7eed49c332f127c8541281b85def80e54c882920/src/providers/Post.svelte with 0 stars
-https://github.com/jdgaravito/bitagora_frontend/blob/776a23f5e848995d3eba90563d55c96429470c48/src/Events/AddEvent.svelte with 0 stars
-https://github.com/gopear/OlcsoSor/blob/b1fa1d877a59f7daf41a86fecb21137c91652d77/src/routes/index.svelte with 3 stars
-https://github.com/openstate/allmanak/blob/ff9ac0833e5e63f7c17f99c5c2355b4e46c48148/app/src/routes/index.svelte with 3 stars
-https://github.com/openstate/allmanak/blob/e6d7aa72a8878eefc6f63a27c983894de1cef294/app/src/components/ReportForm.svelte with 3 stars
-https://github.com/wolbodo/members/blob/d091f1e44b4e8cb8cc31f39ea6f6e9c36211d019/sapper/src/components/Member.html with 1 stars
+➜ ghtopdep https://github.com/rob-balfre/svelte-select --search=isMulti
+https://github.com/dbgate/dbgate/blob/7aa44d13e44a715fb7235db47e047e1ac0c981fb/packages/web/src/forms/SelectField.svelte with 7353 stars
+https://github.com/dbgate/dbgate/blob/7aa44d13e44a715fb7235db47e047e1ac0c981fb/packages/web/src/impexp/FormTablesSelect.svelte with 7353 stars
+https://github.com/dbgate/dbgate/blob/7aa44d13e44a715fb7235db47e047e1ac0c981fb/packages/web/src/forms/FormArchiveFilesSelect.svelte with 7353 stars
+https://github.com/dbgate/dbgate/blob/7aa44d13e44a715fb7235db47e047e1ac0c981fb/packages/web/src/formview/FormViewFilters.svelte with 7353 stars
+https://github.com/dbgate/dbgate/blob/7aa44d13e44a715fb7235db47e047e1ac0c981fb/packages/web/src/designer/DesignerTable.svelte with 7353 stars
+https://github.com/dbgate/dbgate/blob/7aa44d13e44a715fb7235db47e047e1ac0c981fb/packages/datalib/src/GridDisplay.ts with 7353 stars
+...
 ```
 
 ## Development setup
@@ -167,7 +166,7 @@ Using [uv](https://docs.astral.sh/uv/)
 
 ```sh
 $ uv sync
-$ uv run ghtopdep https://github.com/dropbox/dropbox-sdk-js
+$ uv run ghtopdep https://github.com/rob-balfre/svelte-select
 $ uv build
 $ uv publish
 ```
