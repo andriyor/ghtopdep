@@ -1,0 +1,917 @@
+<html><body><div id="dependents" data-hpc="">
+    <div data-view-component="true" class="Subhead">
+  <h2 data-view-component="true" class="Subhead-heading Subhead-heading--large">Dependency graph</h2>
+  
+  
+</div>    <nav aria-label="Dependency Insights menu" data-view-component="true" class="tabnav d-flex">
+  
+
+  <ul data-view-component="true" class="tabnav-tabs flex-1">
+      <li data-view-component="true" class="d-inline-flex">
+  <a href="/psf/requests/network/dependencies" data-view-component="true" class="tabnav-tab">
+    
+      Dependencies
+    
+</a></li>
+      <li data-view-component="true" class="d-inline-flex">
+  <a href="/psf/requests/network/dependents" aria-current="page" data-view-component="true" class="tabnav-tab">
+    
+      Dependents
+    
+</a></li>
+</ul>
+        <div>
+          <!-- '"` --><!-- </textarea></xmp> --><form data-turbo="false" action="/psf/requests/dependency-graph/sbom" accept-charset="UTF-8" method="post"><input type="hidden" data-csrf="true" name="authenticity_token" value="">
+            <button aria-label="Export SBOM" type="submit" data-view-component="true" class="Button--secondary Button--medium Button">  <span class="Button-content">
+      <span class="Button-visual Button-leadingVisual">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-download mr-0 tmp-mr-0 mr-md-2 tmp-mr-md-2">
+    <path d="M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14Z"></path><path d="M7.25 7.689V2a.75.75 0 0 1 1.5 0v5.689l1.97-1.969a.749.749 0 1 1 1.06 1.06l-3.25 3.25a.749.749 0 0 1-1.06 0L4.22 6.78a.749.749 0 1 1 1.06-1.06l1.97 1.969Z"></path>
+</svg>
+      </span>
+    <span class="Button-label"><span class="d-none d-md-inline">Export SBOM</span></span>
+  </span>
+</button>
+</form>      </div>
+
+</nav>
+
+      <details class="select-menu float-right position-relative details-reset details-overlay">
+        <summary aria-label="Filter by Package" data-view-component="true" class="select-menu-button btn-sm btn">    <i>Package:</i> requests
+</summary>        <details-menu class="select-menu-modal position-absolute right-0" style="z-index: 99;">
+          <div class="select-menu-header">
+            <span class="select-menu-title">Packages</span>
+          </div>
+          <div class="select-menu-list">
+              <a href="/psf/requests/network/dependents?package_id=UGFja2FnZS01NzA4OTExNg%3D%3D" class="select-menu-item" role="menuitemradio" aria-checked="true">
+                <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check select-menu-item-icon">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+                <span class="select-menu-item-text">
+                  requests
+                  
+                </span>
+              </a>
+              <a href="/psf/requests/network/dependents?package_id=UGFja2FnZS00NTM2NjIzNzQ%3D" class="select-menu-item" role="menuitemradio" aria-checked="false">
+                <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check select-menu-item-icon">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+                <span class="select-menu-item-text">
+                  @pypi/requests
+                  
+                </span>
+              </a>
+              <a href="/psf/requests/network/dependents?package_id=UGFja2FnZS0yMjc2NDgyODI5" class="select-menu-item" role="menuitemradio" aria-checked="false">
+                <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check select-menu-item-icon">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+                <span class="select-menu-item-text">
+                  github.com/psf/requests
+                  
+                </span>
+              </a>
+              <a href="/psf/requests/network/dependents?package_id=UGFja2FnZS0yNTY2NzIyNjcx" class="select-menu-item" role="menuitemradio" aria-checked="false">
+                <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check select-menu-item-icon">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+                <span class="select-menu-item-text">
+                  github.com/requests/requests
+                  
+                </span>
+              </a>
+              <a href="/psf/requests/network/dependents?package_id=UGFja2FnZS01NzI5ODI5NjEz" class="select-menu-item" role="menuitemradio" aria-checked="false">
+                <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-check select-menu-item-icon">
+    <path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"></path>
+</svg>
+                <span class="select-menu-item-text">
+                  queshyfrog
+                  
+                </span>
+              </a>
+          </div>
+        </details-menu>
+      </details>
+
+      <p role="status" class="tmp-mb-4">
+        Repositories
+        that depend on <strong>requests</strong>
+      </p>
+
+      <div class="Box">
+        <div class="Box-header clearfix">
+          <div class="table-list-filters flex-auto d-flex min-width-0">
+            <div role="status" class="table-list-header-toggle states flex-auto pl-0">
+              <a class="btn-link selected" href="/psf/requests/network/dependents?dependent_type=REPOSITORY">
+                <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-code-square">
+    <path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25Zm7.47 3.97a.75.75 0 0 1 1.06 0l2 2a.75.75 0 0 1 0 1.06l-2 2a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L10.69 8 9.22 6.53a.75.75 0 0 1 0-1.06ZM6.78 6.53 5.31 8l1.47 1.47a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215l-2-2a.75.75 0 0 1 0-1.06l2-2a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Z"></path>
+</svg>
+                4,253,699
+                Repositories
+</a>              <a class="btn-link " href="/psf/requests/network/dependents?dependent_type=PACKAGE">
+                <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-package">
+    <path d="m8.878.392 5.25 3.045c.54.314.872.89.872 1.514v6.098a1.75 1.75 0 0 1-.872 1.514l-5.25 3.045a1.75 1.75 0 0 1-1.756 0l-5.25-3.045A1.75 1.75 0 0 1 1 11.049V4.951c0-.624.332-1.201.872-1.514L7.122.392a1.75 1.75 0 0 1 1.756 0ZM7.875 1.69l-4.63 2.685L8 7.133l4.755-2.758-4.63-2.685a.248.248 0 0 0-.25 0ZM2.5 5.677v5.372c0 .09.047.171.125.216l4.625 2.683V8.432Zm6.25 8.271 4.625-2.683a.25.25 0 0 0 .125-.216V5.677L8.75 8.432Z"></path>
+</svg>
+                151,375
+                Packages
+</a>              <details class="details-reset d-inline-block details-overlay js-dropdown-details position-relative">
+                <summary aria-label="Warning" class="d-block px-1"><svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-info">
+    <path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path>
+</svg></summary>
+                <div class="Popover mt-2 right-0 mr-n2">
+                  <div class="Popover-message Popover-message--large Box color-shadow-large tmp-p-3 Popover-message--top-right ws-normal">
+                    These counts are approximate and may not exactly match the dependents shown below.
+                  </div>
+                </div>
+              </details>
+            </div>
+            <div class="table-list-header-toggle no-wrap d-flex flex-auto flex-justify-between flex-sm-justify-start flex-lg-justify-end">
+              <details class="details-reset details-overlay d-inline-block position-relative" id="owner-filter-select-menu">
+                  <summary data-hotkey="o" aria-haspopup="true" aria-label="Filter by Owner" data-view-component="true" class="btn-link">    Owner<svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-triangle-down ml-2 tmp-ml-2 mr-n1 tmp-mr-n1">
+    <path d="m4.427 7.427 3.396 3.396a.25.25 0 0 0 .354 0l3.396-3.396A.25.25 0 0 0 11.396 7H4.604a.25.25 0 0 0-.177.427Z"></path>
+</svg>
+</summary>
+                <details-menu class="SelectMenu SelectMenu--hasFilter right-lg-0" role="dialog" aria-label="Filter by owner menu">
+                  <div class="SelectMenu-modal">
+                    <header class="SelectMenu-header">
+                      <span id="owner-filter-field-label" class="SelectMenu-title">Filter by owner</span>
+                      <button class="SelectMenu-closeButton" type="button" data-toggle-for="owner-filter-select-menu">
+                        <svg aria-label="Close menu" role="img" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-x">
+    <path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"></path>
+</svg>
+                      </button>
+                    </header>
+                    <div class="SelectMenu-filter">
+                      <input aria-labelledby="owner-filter-field-label" class="SelectMenu-input form-control js-filterable-field" id="owner-filter-field" type="text" placeholder="Enter a user name" autocomplete="off" spellcheck="false" autofocus="">
+                    </div>
+                    <div class="SelectMenu-list select-menu-list" data-filter="owner" role="listbox" aria-label="Filter by owner list">
+                      <div data-filterable-for="owner-filter-field" data-filterable-type="substring">
+                      </div>
+                      <!-- '"` --><!-- </textarea></xmp> --><form class="select-menu-new-item-form js-new-item-form" data-turbo="false" action="/psf/requests/network/dependents" accept-charset="UTF-8" method="get">
+                        <input type="hidden" name="dependent_type" value="REPOSITORY">
+                        <button class="SelectMenu-item d-block js-new-item-value" type="submit" name="owner" role="option">
+                          <div class="text-bold f5 js-new-item-name"></div>
+                          <div class="color-fg-muted">Filter by this user</div>
+                        </button>
+</form>                    </div>
+                  </div>
+                </details-menu>
+              </details>
+            </div>
+          </div>
+        </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/139151507?s=40&amp;v=4" width="20" height="20" alt="@pateltisha24">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/pateltisha24/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/pateltisha24">pateltisha24</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/pateltisha24/Visitor-Management-System/hovercard" href="/pateltisha24/Visitor-Management-System">Visitor-Management-System</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        1
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/113091135?s=40&amp;v=4" width="20" height="20" alt="@alpenlabs">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="organization" data-hovercard-url="/orgs/alpenlabs/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/alpenlabs">alpenlabs</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/alpenlabs/execution-specs/hovercard" href="/alpenlabs/execution-specs">execution-specs</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/4836923?s=40&amp;v=4" width="20" height="20" alt="@johndball">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/johndball/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/johndball">johndball</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/johndball/pisonde-mobile/hovercard" href="/johndball/pisonde-mobile">pisonde-mobile</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/11550632?s=40&amp;v=4" width="20" height="20" alt="@matthewhand">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/matthewhand/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/matthewhand">matthewhand</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/matthewhand/vectara-ingest/hovercard" href="/matthewhand/vectara-ingest">vectara-ingest</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/11550632?s=40&amp;v=4" width="20" height="20" alt="@matthewhand">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/matthewhand/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/matthewhand">matthewhand</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/matthewhand/ugv_rpi/hovercard" href="/matthewhand/ugv_rpi">ugv_rpi</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/11550632?s=40&amp;v=4" width="20" height="20" alt="@matthewhand">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/matthewhand/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/matthewhand">matthewhand</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/matthewhand/operating-swarm/hovercard" href="/matthewhand/operating-swarm">operating-swarm</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        20
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        6
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/11550632?s=40&amp;v=4" width="20" height="20" alt="@matthewhand">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/matthewhand/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/matthewhand">matthewhand</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/matthewhand/open-webui/hovercard" href="/matthewhand/open-webui">open-webui</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/11550632?s=40&amp;v=4" width="20" height="20" alt="@matthewhand">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/matthewhand/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/matthewhand">matthewhand</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/matthewhand/mcp-flowise/hovercard" href="/matthewhand/mcp-flowise">mcp-flowise</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        55
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        23
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/11550632?s=40&amp;v=4" width="20" height="20" alt="@matthewhand">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/matthewhand/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/matthewhand">matthewhand</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/matthewhand/labs-Voice-Agent/hovercard" href="/matthewhand/labs-Voice-Agent">labs-Voice-Agent</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/164947598?s=40&amp;v=4" width="20" height="20" alt="@living-relation">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/living-relation/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/living-relation">living-relation</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/living-relation/handbuilt-cad/hovercard" href="/living-relation/handbuilt-cad">handbuilt-cad</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/585305?s=40&amp;v=4" width="20" height="20" alt="@lanl">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="organization" data-hovercard-url="/orgs/lanl/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/lanl">lanl</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/lanl/bngsim/hovercard" href="/lanl/bngsim">bngsim</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        3
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        5
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/1080344?s=40&amp;v=4" width="20" height="20" alt="@guillaumepiot">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/guillaumepiot/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/guillaumepiot">guillaumepiot</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/guillaumepiot/cotidia-testimonial/hovercard" href="/guillaumepiot/cotidia-testimonial">cotidia-testimonial</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        1
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        1
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/1080344?s=40&amp;v=4" width="20" height="20" alt="@guillaumepiot">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/guillaumepiot/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/guillaumepiot">guillaumepiot</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/guillaumepiot/cotidia-file/hovercard" href="/guillaumepiot/cotidia-file">cotidia-file</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        1
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        1
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/1080344?s=40&amp;v=4" width="20" height="20" alt="@guillaumepiot">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/guillaumepiot/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/guillaumepiot">guillaumepiot</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/guillaumepiot/cotidia-actionable/hovercard" href="/guillaumepiot/cotidia-actionable">cotidia-actionable</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        1
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        1
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/38500363?s=40&amp;v=4" width="20" height="20" alt="@funkelab">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="organization" data-hovercard-url="/orgs/funkelab/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/funkelab">funkelab</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/funkelab/daisy/hovercard" href="/funkelab/daisy">daisy</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        34
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        18
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/308037171?s=40&amp;v=4" width="20" height="20" alt="@mmrzalizade1376-hub">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/mmrzalizade1376-hub/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/mmrzalizade1376-hub">mmrzalizade1376-hub</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/mmrzalizade1376-hub/mini-swe-agent/hovercard" href="/mmrzalizade1376-hub/mini-swe-agent">mini-swe-agent</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/146994248?s=40&amp;v=4" width="20" height="20" alt="@sunilgentyala">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/sunilgentyala/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/sunilgentyala">sunilgentyala</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/sunilgentyala/aegis-integrity/hovercard" href="/sunilgentyala/aegis-integrity">aegis-integrity</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        19
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        6
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/12691549?s=40&amp;v=4" width="20" height="20" alt="@MirkoUgoliniDev">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/MirkoUgoliniDev/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/MirkoUgoliniDev">MirkoUgoliniDev</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/MirkoUgoliniDev/KiCad-ComponentGenerator/hovercard" href="/MirkoUgoliniDev/KiCad-ComponentGenerator">KiCad-ComponentGenerator</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/249750813?s=40&amp;v=4" width="20" height="20" alt="@tiagowitt">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/tiagowitt/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/tiagowitt">tiagowitt</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/tiagowitt/dashboard-tibia/hovercard" href="/tiagowitt/dashboard-tibia">dashboard-tibia</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/10108275?s=40&amp;v=4" width="20" height="20" alt="@ctkubik">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/ctkubik/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/ctkubik">ctkubik</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/ctkubik/airline-ctkubik/hovercard" href="/ctkubik/airline-ctkubik">airline-ctkubik</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/54679392?s=40&amp;v=4" width="20" height="20" alt="@dustenatx">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/dustenatx/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/dustenatx">dustenatx</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/dustenatx/QuestVector/hovercard" href="/dustenatx/QuestVector">QuestVector</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/187511744?s=40&amp;v=4" width="20" height="20" alt="@barzoj-co">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="organization" data-hovercard-url="/orgs/barzoj-co/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/barzoj-co">barzoj-co</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/barzoj-co/llmentary/hovercard" href="/barzoj-co/llmentary">llmentary</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/4134823?s=40&amp;v=4" width="20" height="20" alt="@stharrold">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/stharrold/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/stharrold">stharrold</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/stharrold/stharrold.github.io/hovercard" href="/stharrold/stharrold.github.io">stharrold.github.io</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        2
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        1
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/49560738?s=40&amp;v=4" width="20" height="20" alt="@skalenetwork">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="organization" data-hovercard-url="/orgs/skalenetwork/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/skalenetwork">skalenetwork</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/skalenetwork/agentpit/hovercard" href="/skalenetwork/agentpit">agentpit</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        5
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/39873704?s=40&amp;v=4" width="20" height="20" alt="@Abbaskhurram255">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/Abbaskhurram255/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/Abbaskhurram255">Abbaskhurram255</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/Abbaskhurram255/blank-app-1/hovercard" href="/Abbaskhurram255/blank-app-1">blank-app-1</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2" src="https://avatars.githubusercontent.com/u/40763877?s=40&amp;v=4" width="20" height="20" alt="@primordial-analytics">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="organization" data-hovercard-url="/orgs/primordial-analytics/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/primordial-analytics">primordial-analytics</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/primordial-analytics/primordial-analytics.github.io/hovercard" href="/primordial-analytics/primordial-analytics.github.io">primordial-analytics.github.io</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/71499553?s=40&amp;v=4" width="20" height="20" alt="@LightYagami28">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/LightYagami28/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/LightYagami28">LightYagami28</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/LightYagami28/bot-lite-downloader/hovercard" href="/LightYagami28/bot-lite-downloader">bot-lite-downloader</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/1196958?s=40&amp;v=4" width="20" height="20" alt="@redoracle">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/redoracle/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/redoracle">redoracle</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/redoracle/hermes-ops-kit/hovercard" href="/redoracle/hermes-ops-kit">hermes-ops-kit</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        1
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/52109404?s=40&amp;v=4" width="20" height="20" alt="@cmstack">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/cmstack/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/cmstack">cmstack</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/cmstack/voice-ai-platform/hovercard" href="/cmstack/voice-ai-platform">voice-ai-platform</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+          
+  <div class="Box-row d-flex flex-items-center" data-test-id="dg-repo-pkg-dependent">
+    <img class="avatar mr-2 avatar-user" src="https://avatars.githubusercontent.com/u/341869197?s=40&amp;v=4" width="20" height="20" alt="@dotbrainhq">
+
+    <span class="f5 color-fg-muted" data-repository-hovercards-enabled="">
+      <a data-hovercard-type="user" data-hovercard-url="/users/dotbrainhq/hovercard" data-octo-click="hovercard-link-click" data-octo-dimensions="link_type:self" href="/dotbrainhq">dotbrainhq</a> /
+      <a class="text-bold" data-hovercard-type="repository" data-hovercard-url="/dotbrainhq/dottide/hovercard" href="/dotbrainhq/dottide">dottide</a>
+        <small></small>
+    </span>
+    <div class="d-flex flex-auto flex-justify-end">
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">
+    <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.751.751 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Zm0 2.445L6.615 5.5a.75.75 0 0 1-.564.41l-3.097.45 2.24 2.184a.75.75 0 0 1 .216.664l-.528 3.084 2.769-1.456a.75.75 0 0 1 .698 0l2.77 1.456-.53-3.084a.75.75 0 0 1 .216-.664l2.24-2.183-3.096-.45a.75.75 0 0 1-.564-.41L8 2.694Z"></path>
+</svg>
+        0
+      </span>
+      <span class="color-fg-muted text-bold tmp-pl-3">
+        <svg aria-hidden="true" data-component="Octicon" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-repo-forked">
+    <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"></path>
+</svg>
+        0
+      </span>
+    </div>
+  </div>
+
+      </div>
+
+      <div class="paginate-container">
+        <div class="BtnGroup" data-test-selector="pagination"><button class="btn BtnGroup-item" disabled="disabled">Previous</button><a rel="nofollow" class="btn BtnGroup-item" href="https://github.com/psf/requests/network/dependents?dependent_type=REPOSITORY&amp;dependents_after=NTIyNTA4NDI0MzQ">Next</a></div>
+      </div>
+  </div></body></html>

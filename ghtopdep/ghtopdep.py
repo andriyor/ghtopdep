@@ -186,6 +186,60 @@ def get_max_deps(sess, url):
     return max_deps
 
 
+def scrape_dependents(sess, page_urls, url, minstar, pbar):
+    """Walk the dependents pages and return (repos, total_repos_count, more_than_zero_count)."""
+    repos = []
+    more_than_zero_count = 0
+    total_repos_count = 0
+    seen_repo_urls = set()
+
+    for page_url in page_urls:
+        while True:
+            response = sess.get(page_url)
+            parsed_node = LexborHTMLParser(response.text)
+            dependents = parsed_node.css(ITEM_SELECTOR)
+            for dep in dependents:
+                repo_link = dep.css_first(REPO_SELECTOR)
+                if repo_link:
+                    if repo_link.attributes["href"] in seen_repo_urls:
+                        continue
+                    seen_repo_urls.add(repo_link.attributes["href"])
+                total_repos_count += 1
+
+                repo_stars_list = dep.css(STARS_SELECTOR)
+                # only for ghost or private? packages
+                if repo_stars_list:
+                    repo_stars = repo_stars_list[0].text().strip()
+                    repo_stars_num = int(repo_stars.replace(",", ""))
+                else:
+                    continue
+
+                if repo_stars_num != 0:
+                    more_than_zero_count += 1
+                if repo_stars_num >= minstar:
+                    relative_repo_url = dep.css(REPO_SELECTOR)[0].attributes["href"]
+                    repo_url = "{0}{1}".format(GITHUB_URL, relative_repo_url)
+
+                    if repo_url != url:
+                        repos.append({
+                            "url": repo_url,
+                            "stars": repo_stars_num
+                        })
+
+            pagination_buttons = parsed_node.css(NEXT_BUTTON_SELECTOR)
+
+            if len(pagination_buttons) == 2:
+                page_url = pagination_buttons[1].attributes["href"]
+            elif pagination_buttons and pagination_buttons[0].text() == "Next":
+                page_url = pagination_buttons[0].attributes["href"]
+            elif len(pagination_buttons) == 0 or pagination_buttons[0].text() == "Previous":
+                break
+
+            pbar.update(REPOS_PER_PAGE)
+
+    return repos, total_repos_count, more_than_zero_count
+
+
 @click.command()
 @click.argument("url")
 @click.option("--repositories/--packages", default=True, help="Sort repositories or packages (default repositories)")
@@ -243,10 +297,6 @@ def cli(url, repositories, search, table, rows, minstar, report, description, ex
         destination = "package"
         destinations = "packages"
 
-    repos = []
-    more_than_zero_count = 0
-    total_repos_count = 0
-
     sess = requests.session()
     retries = Retry(
         total=15,
@@ -263,53 +313,7 @@ def cli(url, repositories, search, table, rows, minstar, report, description, ex
     max_deps = sum(get_max_deps(sess, page_url) for page_url in page_urls)
 
     pbar = tqdm(total=max_deps)
-
-    seen_repo_urls = set()
-
-    for page_url in page_urls:
-        while True:
-            response = sess.get(page_url)
-            parsed_node = LexborHTMLParser(response.text)
-            dependents = parsed_node.css(ITEM_SELECTOR)
-            for dep in dependents:
-                repo_link = dep.css_first(REPO_SELECTOR)
-                if repo_link:
-                    if repo_link.attributes["href"] in seen_repo_urls:
-                        continue
-                    seen_repo_urls.add(repo_link.attributes["href"])
-                total_repos_count += 1
-
-                repo_stars_list = dep.css(STARS_SELECTOR)
-                # only for ghost or private? packages
-                if repo_stars_list:
-                    repo_stars = repo_stars_list[0].text().strip()
-                    repo_stars_num = int(repo_stars.replace(",", ""))
-                else:
-                    continue
-
-                if repo_stars_num != 0:
-                    more_than_zero_count += 1
-                if repo_stars_num >= minstar:
-                    relative_repo_url = dep.css(REPO_SELECTOR)[0].attributes["href"]
-                    repo_url = "{0}{1}".format(GITHUB_URL, relative_repo_url)
-
-                    if repo_url != url:
-                        repos.append({
-                            "url": repo_url,
-                            "stars": repo_stars_num
-                        })
-
-            pagination_buttons = parsed_node.css(NEXT_BUTTON_SELECTOR)
-
-            if len(pagination_buttons) == 2:
-                page_url = pagination_buttons[1].attributes["href"]
-            elif pagination_buttons and pagination_buttons[0].text() == "Next":
-                page_url = pagination_buttons[0].attributes["href"]
-            elif len(pagination_buttons) == 0 or pagination_buttons[0].text() == "Previous":
-                break
-
-            pbar.update(REPOS_PER_PAGE)
-
+    repos, total_repos_count, more_than_zero_count = scrape_dependents(sess, page_urls, url, minstar, pbar)
     pbar.close()
 
     if report:
