@@ -180,6 +180,8 @@ $ uv publish
 
 [Boshen/top-github-dependents-by-stars: CLI tool for sorting dependents repo by stars](https://github.com/Boshen/top-github-dependents-by-stars)
 
+[dep-rank](https://github.com/j7an/dep-rank) - fork of ghtopdep, adds trust-based ranking and an MCP server for AI agents
+
 [ghtracker](https://github.com/zer0yu/ghtracker) - not provide full result https://github.com/zer0yu/ghtracker/issues/2
 
 [github-by-stars](https://github.com/hacker-DOM/github-by-stars) - complex setup
