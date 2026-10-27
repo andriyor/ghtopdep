@@ -66,6 +66,12 @@ export GHTOPDEP_TOKEN="**\*\*\*\***\*\***\*\*\*\***\*\*\*\***\*\*\*\***\*\***\*\
 
 or pass token as option --token
 
+If you use [GitHub CLI](https://cli.github.com/), you can reuse its token:
+
+```sh
+export GHTOPDEP_TOKEN=$(gh auth token)
+```
+
 ```sh
 ➜ ghtopdep --help
 Usage: ghtopdep [OPTIONS] URL
