@@ -147,6 +147,9 @@ found 61 packages with more than zero star
 
 also ghtopdep support code searching at dependents (repositories/packages)
 
+`--search` searches the top `--rows` dependents. GitHub allows about 10 code searches per minute,
+so larger `--rows` values make ghtopdep pause and wait.
+
 ```sh
 ➜ ghtopdep https://github.com/rob-balfre/svelte-select --search=isMulti --minstar=0
 https://github.com/andriyor/linkorg-frontend/blob/7eed49c332f127c8541281b85def80e54c882920/src/App.svelte with 0 stars
