@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ghtopdep"
-version = "0.4.3"
+version = "0.5.0"
 description = "CLI tool for sorting dependents repositories and packages by stars"
 authors = ["Andriy Orehov <andriyorehov@gmail.com>"]
 license = "MIT"
