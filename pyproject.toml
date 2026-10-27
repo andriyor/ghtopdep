@@ -5,7 +5,7 @@ description = "CLI tool for sorting dependents repositories and packages by star
 authors = [{ name = "Andriy Orehov", email = "andriyorehov@gmail.com" }]
 license = "MIT"
 readme = "README.md"
-requires-python = ">=3.10,<3.16"
+requires-python = ">=3.11,<3.16"
 dependencies = [
     "selectolax>=1.0.2,<2",
     "tabulate>=0.10.0,<0.11",

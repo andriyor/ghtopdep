@@ -7,7 +7,7 @@ CLI tool for sorting dependents repo by stars
 
 ## Requirements
 
-- Python 3.10 and up
+- Python 3.11 and up
 
 ## Installation
 
