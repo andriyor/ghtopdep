@@ -5,3 +5,4 @@ ghtopdep.egg-info
 dist/
 *.pyc
 .vscode
+.venv

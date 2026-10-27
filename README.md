@@ -21,7 +21,7 @@ $ pip install ghtopdep
 ### From git repository
 
 ```sh
-$ pip install git+https://github.com/andriyor/ghtopdep.git#egg=ghtopdep
+$ pip install git+https://github.com/andriyor/ghtopdep.git
 ```
 
 ### From source
@@ -152,22 +152,13 @@ https://github.com/wolbodo/members/blob/d091f1e44b4e8cb8cc31f39ea6f6e9c36211d019
 
 ## Development setup
 
-Using [Poetry](https://poetry.eustace.io/docs/)
+Using [uv](https://docs.astral.sh/uv/)
 
 ```sh
-$ poetry install
-$ poetry run ghtopdep https://github.com/dropbox/dropbox-sdk-js
-$ dephell deps convert --from=pyproject.toml --to=setup.py
-$ poetry build
-$ poetry publish
-```
-
-[poetry2setup: Convert python-poetry(pyproject.toml) to setup.py.](https://github.com/abersheeran/poetry2setup)
-
-or [Pipenv](https://docs.pipenv.org/)
-
-```sh
-$ pipenv install --dev -e .
+$ uv sync
+$ uv run ghtopdep https://github.com/dropbox/dropbox-sdk-js
+$ uv build
+$ uv publish
 ```
 
 ## License
