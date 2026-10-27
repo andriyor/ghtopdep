@@ -149,7 +149,7 @@ def get_max_deps(sess, url):
 @click.option("--table/--json", default=True, help="View mode")
 @click.option("--report", is_flag=True, help="Report")
 @click.option("--description", is_flag=True, help="Show description of packages or repositories (performs additional "
-                                                  "request per repository)")
+                                                  "request per shown repository)")
 @click.option("--rows", default=10, help="Number of showing repositories (default=10)")
 @click.option("--minstar", default=5, help="Minimum number of stars (default=5)")
 @click.option("--search", help="search code at dependents (repositories/packages)")

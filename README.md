@@ -55,8 +55,8 @@ $ docker run --rm -it ghtopdep --help
 
 ## Usage
 
-If you want retrieve packages or repositories description you need pass token.
-To prevent rale limit being exceeded for unauthentIcated requests, ghtopdep needs an access token.
+A token is needed only for `--description` and `--search`, which use the GitHub API.
+Dependents themselves are scraped from GitHub pages and don't use the token.
 For public repositories, [create a token](https://github.com/settings/tokens/new?scopes=public_repo&description=ghtopdep)
 with the public_repo permission.
 
@@ -75,7 +75,8 @@ Options:
                                repositories)
   --table / --json             View mode
   --description                Show description of packages or repositories
-                               (performs additional request per repository)
+                               (performs additional request per shown
+                               repository)
   --rows INTEGER               Number of showing repositories (default=10)
   --minstar INTEGER            Minimum number of stars (default=5)
   --search TEXT                search code at dependents
