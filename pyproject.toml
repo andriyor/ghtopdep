@@ -1,6 +1,6 @@
 [project]
 name = "ghtopdep"
-version = "0.5.0"
+version = "0.6.0"
 description = "CLI tool for sorting dependents repositories and packages by stars"
 authors = [{ name = "Andriy Orehov", email = "andriyorehov@gmail.com" }]
 license = "MIT"
