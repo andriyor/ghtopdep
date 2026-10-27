@@ -205,7 +205,7 @@ def cli(url, repositories, search, table, rows, minstar, report, description, al
     retries = Retry(
         total=15,
         backoff_factor=15,
-        status_forcelist=[429])
+        status_forcelist=[429, 500, 502, 503, 504])
     adapter = CacheControlAdapter(max_retries=retries,
                                   cache=FileCache(CACHE_DIR),
                                   heuristic=OneDayHeuristic())
