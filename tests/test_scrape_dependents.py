@@ -3,7 +3,7 @@ from types import SimpleNamespace
 
 import click
 
-from ghtopdep.ghtopdep import get_max_deps, scrape_dependents
+from ghtopdep.scraper import get_max_deps, scrape_dependents
 
 # First dependents page of psf/requests, trimmed to #dependents; its "Next" link leads to LAST_PAGE
 PAGE = (Path(__file__).parent / "fixtures" / "dependents_page.html").read_text()

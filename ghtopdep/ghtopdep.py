@@ -1,128 +1,19 @@
-import calendar
 import json
 import os
 import sys
-import textwrap
-import time
-import datetime
-from email.utils import formatdate, parsedate
-from urllib.parse import parse_qs, urlencode, urlparse
+from urllib.parse import urlparse
 
-import appdirs
 import click
 import github3
 import requests
 from urllib3.util.retry import Retry
 from cachecontrol.caches import FileCache
-from cachecontrol.heuristics import BaseHeuristic
 from cachecontrol import CacheControl, CacheControlAdapter
 from tqdm import tqdm
-from selectolax.lexbor import LexborHTMLParser
 from tabulate import tabulate
 
-
-PACKAGE_NAME = "ghtopdep"
-CACHE_DIR = appdirs.user_cache_dir(PACKAGE_NAME)
-NEXT_BUTTON_SELECTOR = "#dependents > div.paginate-container > div > a"
-ITEM_SELECTOR = "#dependents > div.Box > div.flex-items-center"
-REPO_SELECTOR = "span > a.text-bold"
-STARS_SELECTOR = "div > span:nth-child(1)"
-PACKAGE_SELECTOR = ".select-menu-item"
-GITHUB_URL = "https://github.com"
-REPOS_PER_PAGE = 30
-
-class OneDayHeuristic(BaseHeuristic):
-    cacheable_by_default_statuses = {
-        200, 203, 204, 206, 300, 301, 404, 405, 410, 414, 501
-    }
-
-    def update_headers(self, response):
-        if response.status not in self.cacheable_by_default_statuses:
-            return {}
-
-        date = parsedate(response.headers["date"])
-        expires = datetime.datetime(*date[:6]) + datetime.timedelta(days=1)
-        return {"expires": formatdate(calendar.timegm(expires.timetuple())), "cache-control": "public"}
-
-    def warning(self, response):
-        msg = "Automatically cached! Response is Stale."
-        return "110 - {0}".format(msg)
-
-
-def shorten_description(description):
-    if not description:
-        return " "
-    return textwrap.shorten(description, width=60, placeholder="...")
-
-
-def rate_limit_wait(response):
-    """Seconds to wait if the response is a GitHub rate limit error, otherwise None."""
-    if response.status_code not in (403, 429):
-        return None
-    if "Retry-After" in response.headers:
-        return int(response.headers["Retry-After"])
-    if response.headers.get("X-RateLimit-Remaining") == "0":
-        return max(int(response.headers["X-RateLimit-Reset"]) - time.time(), 0) + 1
-    return None
-
-
-def search_code(gh, query):
-    """Return (results, incomplete). Code search allows only 10 requests per minute, so wait out the limit and retry."""
-    while True:
-        try:
-            iterator = gh.search_code(query)
-            results = list(iterator)
-            incomplete = bool(iterator.last_response and iterator.last_response.json().get("incomplete_results"))
-            return results, incomplete
-        except github3.exceptions.GitHubError as e:
-            wait = rate_limit_wait(e.response)
-            if wait is None:
-                raise
-            click.echo("Code search rate limit reached, waiting {0:.0f}s".format(wait), err=True)
-            time.sleep(wait)
-
-
-def search_dependents(gh, repos, search):
-    """Print code search hits in each repo, then list repos that failed or may be incomplete."""
-    failed, incomplete = [], []
-    for repo in repos:
-        repo_path = urlparse(repo["url"]).path[1:]
-        try:
-            results, is_incomplete = search_code(gh, "{0} repo:{1}".format(search, repo_path))
-        except (github3.exceptions.GitHubException, requests.RequestException) as e:
-            failed.append("{0} ({1})".format(repo_path, e))
-            continue
-        if is_incomplete:
-            incomplete.append(repo_path)
-        for s in results:
-            click.echo("{0} with {1} stars".format(s.html_url, repo["stars"]))
-    if failed:
-        click.echo("Could not search: {0}".format(", ".join(failed)), err=True)
-    if incomplete:
-        click.echo("Results may be incomplete for: {0}".format(", ".join(incomplete)), err=True)
-
-
-def sort_repos(repos, rows):
-    sorted_repos = sorted(repos, key=lambda i: i["stars"], reverse=True)
-    return sorted_repos[:rows]
-
-
-def top_repos(gh, repos, rows, description, exclude_archived):
-    """Sort by stars and take `rows` repos, calling the API only for those."""
-    if not (description or exclude_archived):
-        return sort_repos(repos, rows)
-    result = []
-    for repo in sorted(repos, key=lambda i: i["stars"], reverse=True):
-        if len(result) == rows:
-            break
-        _, owner, name = urlparse(repo["url"]).path.split("/")
-        gh_repo = gh.repository(owner, name)
-        if exclude_archived and gh_repo.archived:
-            continue
-        if description:
-            repo["description"] = shorten_description(gh_repo.description)
-        result.append(repo)
-    return result
+from ghtopdep.github_api import search_dependents, sort_repos, top_repos
+from ghtopdep.scraper import CACHE_DIR, OneDayHeuristic, get_max_deps, get_packages, get_page_urls, scrape_dependents
 
 
 def humanize(num):
@@ -155,113 +46,10 @@ def show_result(repos, total_repos_count, more_than_zero_count, destinations, ta
         click.echo(json.dumps(repos))
 
 
-def get_packages(sess, page_url):
-    parsed_node = LexborHTMLParser(sess.get(page_url).text)
-
-    # (name, package_id) pairs, names are not unique
-    packages = []
-    selected_package = None
-    for package_item in parsed_node.css(PACKAGE_SELECTOR):
-        query = parse_qs(urlparse(package_item.attributes.get("href", "")).query)
-        if "package_id" in query:
-            packages.append((package_item.text().strip(), query["package_id"][0]))
-            if package_item.attributes.get("aria-checked") == "true":
-                selected_package = package_item.text().strip()
-    return packages, selected_package
-
-
-def get_page_urls(sess, url, destination, all_packages, package_name=None):
-    page_url = "{0}/network/dependents?dependent_type={1}".format(url, destination.upper())
-    if not all_packages and not package_name:
-        return [page_url]
-
-    packages, _ = get_packages(sess, page_url)
-
-    if package_name:
-        selected = [(name, package_id) for name, package_id in packages if name == package_name]
-        if not selected:
-            raise click.BadParameter(
-                "no package named '{0}', available packages: {1}".format(
-                    package_name, ", ".join(name for name, _ in packages) or "none"),
-                param_hint="--package-name")
-        packages = selected
-
-    if not packages:
-        return [page_url]
-    return ["{0}&{1}".format(page_url, urlencode({"package_id": package_id})) for _, package_id in packages]
-
-
 def parse_repo_url(url):
     url = url.rstrip("/").removesuffix(".git")
     owner, repository = urlparse(url).path[1:].split("/")
     return url, owner, repository
-
-
-def get_max_deps(sess, url):
-    main_response = sess.get(url)
-    parsed_node = LexborHTMLParser(main_response.text)
-
-    deps_count_element = parsed_node.css_first('.table-list-header-toggle .btn-link.selected')
-    if deps_count_element is None:
-        if main_response.status_code == 404:
-            raise click.ClickException("repository not found: {0}".format(url.split("/network/")[0]))
-        raise click.ClickException("could not read dependents from {0} (HTTP {1})".format(url, main_response.status_code))
-    max_deps = int(deps_count_element.text().strip().split()[0].replace(',', ''))
-    return max_deps
-
-
-def scrape_dependents(sess, page_urls, url, minstar, pbar):
-    """Walk the dependents pages and return (repos, total_repos_count, more_than_zero_count)."""
-    repos = []
-    more_than_zero_count = 0
-    total_repos_count = 0
-    seen_repo_urls = set()
-
-    for page_url in page_urls:
-        while True:
-            response = sess.get(page_url)
-            parsed_node = LexborHTMLParser(response.text)
-            dependents = parsed_node.css(ITEM_SELECTOR)
-            for dep in dependents:
-                repo_link = dep.css_first(REPO_SELECTOR)
-                if repo_link:
-                    if repo_link.attributes["href"] in seen_repo_urls:
-                        continue
-                    seen_repo_urls.add(repo_link.attributes["href"])
-                total_repos_count += 1
-
-                repo_stars_list = dep.css(STARS_SELECTOR)
-                # only for ghost or private? packages
-                if repo_stars_list:
-                    repo_stars = repo_stars_list[0].text().strip()
-                    repo_stars_num = int(repo_stars.replace(",", ""))
-                else:
-                    continue
-
-                if repo_stars_num != 0:
-                    more_than_zero_count += 1
-                if repo_stars_num >= minstar:
-                    relative_repo_url = dep.css(REPO_SELECTOR)[0].attributes["href"]
-                    repo_url = "{0}{1}".format(GITHUB_URL, relative_repo_url)
-
-                    if repo_url != url:
-                        repos.append({
-                            "url": repo_url,
-                            "stars": repo_stars_num
-                        })
-
-            pagination_buttons = parsed_node.css(NEXT_BUTTON_SELECTOR)
-
-            if len(pagination_buttons) == 2:
-                page_url = pagination_buttons[1].attributes["href"]
-            elif pagination_buttons and pagination_buttons[0].text() == "Next":
-                page_url = pagination_buttons[0].attributes["href"]
-            elif len(pagination_buttons) == 0 or pagination_buttons[0].text() == "Previous":
-                break
-
-            pbar.update(REPOS_PER_PAGE)
-
-    return repos, total_repos_count, more_than_zero_count
 
 
 @click.command()

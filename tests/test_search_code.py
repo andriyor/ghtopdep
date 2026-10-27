@@ -5,7 +5,7 @@ from types import SimpleNamespace
 
 import github3
 
-from ghtopdep import ghtopdep
+from ghtopdep import github_api
 
 
 def rate_limited_response(headers):
@@ -34,18 +34,18 @@ class FakeIterator:
 
 def test_waits_and_retries_on_rate_limit():
     sleeps = []
-    ghtopdep.time.sleep = sleeps.append
+    github_api.time.sleep = sleeps.append
     reset = str(int(time.time()) + 30)
     gh = FakeGitHub([rate_limited_response({"X-RateLimit-Remaining": "0", "X-RateLimit-Reset": reset}),
                      rate_limited_response({"Retry-After": "5"})])
-    assert ghtopdep.search_code(gh, "q") == ([HIT], True)
+    assert github_api.search_code(gh, "q") == ([HIT], True)
     assert 29 <= sleeps[0] <= 31 and sleeps[1] == 5
 
 
 def test_other_errors_are_raised():
     gh = FakeGitHub([rate_limited_response({})])  # 403 without rate limit headers
     try:
-        ghtopdep.search_code(gh, "q")
+        github_api.search_code(gh, "q")
     except github3.exceptions.ForbiddenError:
         return
     raise AssertionError("expected ForbiddenError")
@@ -62,7 +62,7 @@ def test_search_dependents_reports_failed_and_incomplete_repos():
     repos = [{"url": "https://github.com/o/good", "stars": 9}, {"url": "https://github.com/o/bad", "stars": 3}]
     out, err = io.StringIO(), io.StringIO()
     with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
-        ghtopdep.search_dependents(PartlyFailingGitHub(), repos, "q")
+        github_api.search_dependents(PartlyFailingGitHub(), repos, "q")
     assert out.getvalue() == "hit with 9 stars\n"
     assert "Could not search: o/bad" in err.getvalue()
     assert "Results may be incomplete for: o/good" in err.getvalue()

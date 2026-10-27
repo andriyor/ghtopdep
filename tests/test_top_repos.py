@@ -1,6 +1,6 @@
 from types import SimpleNamespace
 
-from ghtopdep.ghtopdep import top_repos
+from ghtopdep.github_api import top_repos
 
 
 class FakeGitHub:
