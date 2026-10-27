@@ -3,6 +3,7 @@ import json
 import os
 import sys
 import textwrap
+import time
 import datetime
 from email.utils import formatdate, parsedate
 from urllib.parse import parse_qs, urlencode, urlparse
@@ -52,6 +53,30 @@ def shorten_description(description):
     if not description:
         return " "
     return textwrap.shorten(description, width=60, placeholder="...")
+
+
+def rate_limit_wait(response):
+    """Seconds to wait if the response is a GitHub rate limit error, otherwise None."""
+    if response.status_code not in (403, 429):
+        return None
+    if "Retry-After" in response.headers:
+        return int(response.headers["Retry-After"])
+    if response.headers.get("X-RateLimit-Remaining") == "0":
+        return max(int(response.headers["X-RateLimit-Reset"]) - time.time(), 0) + 1
+    return None
+
+
+def search_code(gh, query):
+    """Code search allows only 10 requests per minute, so wait out the limit and retry."""
+    while True:
+        try:
+            return list(gh.search_code(query))
+        except github3.exceptions.GitHubError as e:
+            wait = rate_limit_wait(e.response)
+            if wait is None:
+                raise
+            click.echo("Code search rate limit reached, waiting {0:.0f}s".format(wait), err=True)
+            time.sleep(wait)
 
 
 def sort_repos(repos, rows):
@@ -297,7 +322,7 @@ def cli(url, repositories, search, table, rows, minstar, report, description, ex
     if search:
         for repo in repos:
             repo_path = urlparse(repo["url"]).path[1:]
-            for s in gh.search_code("{0} repo:{1}".format(search, repo_path)):
+            for s in search_code(gh, "{0} repo:{1}".format(search, repo_path)):
                 click.echo("{0} with {1} stars".format(s.html_url, repo["stars"]))
     else:
         show_result(sorted_repos, total_repos_count, more_than_zero_count, destinations, table)
