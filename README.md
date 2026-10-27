@@ -87,7 +87,7 @@ Options:
                                request per checked repository)
   --rows INTEGER               Number of showing repositories (default=10)
   --minstar INTEGER            Minimum number of stars (default=5)
-  --search TEXT                search code at dependents
+  --search TEXT                search code at top --rows dependents
                                (repositories/packages)
   --all-packages               Merge dependents of all packages listed for the
                                repository (default: only the package GitHub

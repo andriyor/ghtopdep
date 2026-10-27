@@ -67,10 +67,13 @@ def rate_limit_wait(response):
 
 
 def search_code(gh, query):
-    """Code search allows only 10 requests per minute, so wait out the limit and retry."""
+    """Return (results, incomplete). Code search allows only 10 requests per minute, so wait out the limit and retry."""
     while True:
         try:
-            return list(gh.search_code(query))
+            iterator = gh.search_code(query)
+            results = list(iterator)
+            incomplete = bool(iterator.last_response and iterator.last_response.json().get("incomplete_results"))
+            return results, incomplete
         except github3.exceptions.GitHubError as e:
             wait = rate_limit_wait(e.response)
             if wait is None:
@@ -194,7 +197,7 @@ def get_max_deps(sess, url):
                                                        "per checked repository)")
 @click.option("--rows", default=10, help="Number of showing repositories (default=10)")
 @click.option("--minstar", default=5, help="Minimum number of stars (default=5)")
-@click.option("--search", help="search code at dependents (repositories/packages)")
+@click.option("--search", help="search code at top --rows dependents (repositories/packages)")
 @click.option("--all-packages", is_flag=True, help="Merge dependents of all packages listed for the repository "
                                                   "(default: only the package GitHub selects)")
 @click.option("--package-name", help="Only scrape the package with this exact name")
@@ -203,8 +206,6 @@ def cli(url, repositories, search, table, rows, minstar, report, description, ex
         package_name, token):
     if report and (all_packages or package_name or exclude_archived):
         raise click.UsageError("--report can't be combined with --all-packages, --package-name or --exclude-archived")
-    if search and exclude_archived:
-        raise click.UsageError("--search can't be combined with --exclude-archived")
     if all_packages and package_name:
         raise click.UsageError("--package-name and --all-packages are mutually exclusive")
 
@@ -320,10 +321,22 @@ def cli(url, repositories, search, table, rows, minstar, report, description, ex
     sorted_repos = top_repos(gh, repos, rows, description, exclude_archived)
 
     if search:
-        for repo in repos:
+        failed, incomplete = [], []
+        for repo in sorted_repos:
             repo_path = urlparse(repo["url"]).path[1:]
-            for s in search_code(gh, "{0} repo:{1}".format(search, repo_path)):
+            try:
+                results, is_incomplete = search_code(gh, "{0} repo:{1}".format(search, repo_path))
+            except (github3.exceptions.GitHubException, requests.RequestException) as e:
+                failed.append("{0} ({1})".format(repo_path, e))
+                continue
+            if is_incomplete:
+                incomplete.append(repo_path)
+            for s in results:
                 click.echo("{0} with {1} stars".format(s.html_url, repo["stars"]))
+        if failed:
+            click.echo("Could not search: {0}".format(", ".join(failed)), err=True)
+        if incomplete:
+            click.echo("Results may be incomplete for: {0}".format(", ".join(incomplete)), err=True)
     else:
         show_result(sorted_repos, total_repos_count, more_than_zero_count, destinations, table)
 

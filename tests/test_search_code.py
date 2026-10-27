@@ -17,6 +17,13 @@ class FakeGitHub:
     def search_code(self, query):
         if self.failures:
             raise github3.exceptions.ForbiddenError(self.failures.pop(0))
+        return FakeIterator()
+
+
+class FakeIterator:
+    last_response = SimpleNamespace(json=lambda: {"incomplete_results": True})
+
+    def __iter__(self):
         return iter(["hit"])
 
 
@@ -26,7 +33,7 @@ def test_waits_and_retries_on_rate_limit():
     reset = str(int(time.time()) + 30)
     gh = FakeGitHub([rate_limited_response({"X-RateLimit-Remaining": "0", "X-RateLimit-Reset": reset}),
                      rate_limited_response({"Retry-After": "5"})])
-    assert ghtopdep.search_code(gh, "q") == ["hit"]
+    assert ghtopdep.search_code(gh, "q") == (["hit"], True)
     assert 29 <= sleeps[0] <= 31 and sleeps[1] == 5
 
 
