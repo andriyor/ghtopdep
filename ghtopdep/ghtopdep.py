@@ -82,6 +82,26 @@ def search_code(gh, query):
             time.sleep(wait)
 
 
+def search_dependents(gh, repos, search):
+    """Print code search hits in each repo, then list repos that failed or may be incomplete."""
+    failed, incomplete = [], []
+    for repo in repos:
+        repo_path = urlparse(repo["url"]).path[1:]
+        try:
+            results, is_incomplete = search_code(gh, "{0} repo:{1}".format(search, repo_path))
+        except (github3.exceptions.GitHubException, requests.RequestException) as e:
+            failed.append("{0} ({1})".format(repo_path, e))
+            continue
+        if is_incomplete:
+            incomplete.append(repo_path)
+        for s in results:
+            click.echo("{0} with {1} stars".format(s.html_url, repo["stars"]))
+    if failed:
+        click.echo("Could not search: {0}".format(", ".join(failed)), err=True)
+    if incomplete:
+        click.echo("Results may be incomplete for: {0}".format(", ".join(incomplete)), err=True)
+
+
 def sort_repos(repos, rows):
     sorted_repos = sorted(repos, key=lambda i: i["stars"], reverse=True)
     return sorted_repos[:rows]
@@ -325,22 +345,7 @@ def cli(url, repositories, search, table, rows, minstar, report, description, ex
     sorted_repos = top_repos(gh, repos, rows, description, exclude_archived)
 
     if search:
-        failed, incomplete = [], []
-        for repo in sorted_repos:
-            repo_path = urlparse(repo["url"]).path[1:]
-            try:
-                results, is_incomplete = search_code(gh, "{0} repo:{1}".format(search, repo_path))
-            except (github3.exceptions.GitHubException, requests.RequestException) as e:
-                failed.append("{0} ({1})".format(repo_path, e))
-                continue
-            if is_incomplete:
-                incomplete.append(repo_path)
-            for s in results:
-                click.echo("{0} with {1} stars".format(s.html_url, repo["stars"]))
-        if failed:
-            click.echo("Could not search: {0}".format(", ".join(failed)), err=True)
-        if incomplete:
-            click.echo("Results may be incomplete for: {0}".format(", ".join(incomplete)), err=True)
+        search_dependents(gh, sorted_repos, search)
     else:
         show_result(sorted_repos, total_repos_count, more_than_zero_count, destinations, table)
 
