@@ -202,6 +202,10 @@ def get_max_deps(sess, url):
     parsed_node = LexborHTMLParser(main_response.text)
 
     deps_count_element = parsed_node.css_first('.table-list-header-toggle .btn-link.selected')
+    if deps_count_element is None:
+        if main_response.status_code == 404:
+            raise click.ClickException("repository not found: {0}".format(url.split("/network/")[0]))
+        raise click.ClickException("could not read dependents from {0} (HTTP {1})".format(url, main_response.status_code))
     max_deps = int(deps_count_element.text().strip().split()[0].replace(',', ''))
     return max_deps
 
@@ -308,8 +312,7 @@ def cli(url, repositories, search, table, rows, minstar, report, description, ex
                      cache=FileCache(CACHE_DIR),
                      heuristic=OneDayHeuristic())
     elif (description or search or exclude_archived) and not token:
-        click.echo("Please provide token")
-        sys.exit()
+        raise click.UsageError("--description, --exclude-archived and --search need a token (--token or GHTOPDEP_TOKEN)")
 
     destination = "repository"
     destinations = "repositories"

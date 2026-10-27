@@ -1,7 +1,9 @@
 from pathlib import Path
 from types import SimpleNamespace
 
-from ghtopdep.ghtopdep import scrape_dependents
+import click
+
+from ghtopdep.ghtopdep import get_max_deps, scrape_dependents
 
 # First dependents page of psf/requests, trimmed to #dependents; its "Next" link leads to LAST_PAGE
 PAGE = (Path(__file__).parent / "fixtures" / "dependents_page.html").read_text()
@@ -45,8 +47,25 @@ def test_dedup_across_packages():
     assert (len(repos), total) == (30, 30)
 
 
+def test_missing_repo_is_a_clear_error():
+    sess = SimpleNamespace(get=lambda url: SimpleNamespace(status_code=404, text="<html>Not Found</html>"))
+    try:
+        get_max_deps(sess, "https://github.com/o/missing/network/dependents?dependent_type=REPOSITORY")
+    except click.ClickException as e:
+        assert e.message == "repository not found: https://github.com/o/missing"
+        return
+    raise AssertionError("expected ClickException")
+
+
+def test_reads_dependents_count():
+    sess = SimpleNamespace(get=lambda url: SimpleNamespace(status_code=200, text=PAGE))
+    assert get_max_deps(sess, FIRST_URL) == 4253699
+
+
 if __name__ == "__main__":
     test_parses_page_and_follows_next()
     test_minstar_and_self_exclusion()
     test_dedup_across_packages()
+    test_missing_repo_is_a_clear_error()
+    test_reads_dependents_count()
     print("ok")
