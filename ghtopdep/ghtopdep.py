@@ -48,18 +48,33 @@ class OneDayHeuristic(BaseHeuristic):
         return "110 - {0}".format(msg)
 
 
-def fetch_description(gh, relative_url):
-    _, owner, repository = relative_url.split("/")
-    repository = gh.repository(owner, repository)
-    repo_description = " "
-    if repository.description:
-        repo_description = textwrap.shorten(repository.description, width=60, placeholder="...")
-    return repo_description
+def shorten_description(description):
+    if not description:
+        return " "
+    return textwrap.shorten(description, width=60, placeholder="...")
 
 
 def sort_repos(repos, rows):
     sorted_repos = sorted(repos, key=lambda i: i["stars"], reverse=True)
     return sorted_repos[:rows]
+
+
+def top_repos(gh, repos, rows, description, exclude_archived):
+    """Sort by stars and take `rows` repos, calling the API only for those."""
+    if not (description or exclude_archived):
+        return sort_repos(repos, rows)
+    result = []
+    for repo in sorted(repos, key=lambda i: i["stars"], reverse=True):
+        if len(result) == rows:
+            break
+        _, owner, name = urlparse(repo["url"]).path.split("/")
+        gh_repo = gh.repository(owner, name)
+        if exclude_archived and gh_repo.archived:
+            continue
+        if description:
+            repo["description"] = shorten_description(gh_repo.description)
+        result.append(repo)
+    return result
 
 
 def humanize(num):
@@ -150,6 +165,8 @@ def get_max_deps(sess, url):
 @click.option("--report", is_flag=True, help="Report")
 @click.option("--description", is_flag=True, help="Show description of packages or repositories (performs additional "
                                                   "request per shown repository)")
+@click.option("--exclude-archived", is_flag=True, help="Skip archived repositories (performs additional request "
+                                                       "per checked repository)")
 @click.option("--rows", default=10, help="Number of showing repositories (default=10)")
 @click.option("--minstar", default=5, help="Minimum number of stars (default=5)")
 @click.option("--search", help="search code at dependents (repositories/packages)")
@@ -157,9 +174,12 @@ def get_max_deps(sess, url):
                                                   "(default: only the package GitHub selects)")
 @click.option("--package-name", help="Only scrape the package with this exact name")
 @click.option("--token", envvar="GHTOPDEP_TOKEN")
-def cli(url, repositories, search, table, rows, minstar, report, description, all_packages, package_name, token):
-    if report and (all_packages or package_name):
-        raise click.UsageError("--report can't be combined with --all-packages or --package-name")
+def cli(url, repositories, search, table, rows, minstar, report, description, exclude_archived, all_packages,
+        package_name, token):
+    if report and (all_packages or package_name or exclude_archived):
+        raise click.UsageError("--report can't be combined with --all-packages, --package-name or --exclude-archived")
+    if search and exclude_archived:
+        raise click.UsageError("--search can't be combined with --exclude-archived")
     if all_packages and package_name:
         raise click.UsageError("--package-name and --all-packages are mutually exclusive")
 
@@ -181,12 +201,13 @@ def cli(url, repositories, search, table, rows, minstar, report, description, al
         except requests.exceptions.ConnectionError as e:
             click.echo(e)
 
-    if (description or search) and token:
+    gh = None
+    if (description or search or exclude_archived) and token:
         gh = github3.login(token=token)
         CacheControl(gh.session,
                      cache=FileCache(CACHE_DIR),
                      heuristic=OneDayHeuristic())
-    elif (description or search) and not token:
+    elif (description or search or exclude_archived) and not token:
         click.echo("Please provide token")
         sys.exit()
 
@@ -271,12 +292,7 @@ def cli(url, repositories, search, table, rows, minstar, report, description, al
         except requests.exceptions.ConnectionError as e:
             click.echo(e)
 
-    sorted_repos = sort_repos(repos, rows)
-
-    # only for displayed repos: one API call per repo
-    if description:
-        for repo in sorted_repos:
-            repo["description"] = fetch_description(gh, urlparse(repo["url"]).path)
+    sorted_repos = top_repos(gh, repos, rows, description, exclude_archived)
 
     if search:
         for repo in repos:

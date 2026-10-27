@@ -55,7 +55,7 @@ $ docker run --rm -it ghtopdep --help
 
 ## Usage
 
-A token is needed only for `--description` and `--search`, which use the GitHub API.
+A token is needed only for `--description`, `--exclude-archived` and `--search`, which use the GitHub API.
 Dependents themselves are scraped from GitHub pages and don't use the token.
 For public repositories, [create a token](https://github.com/settings/tokens/new?scopes=public_repo&description=ghtopdep)
 with the public_repo permission.
@@ -83,6 +83,8 @@ Options:
   --description                Show description of packages or repositories
                                (performs additional request per shown
                                repository)
+  --exclude-archived           Skip archived repositories (performs additional
+                               request per checked repository)
   --rows INTEGER               Number of showing repositories (default=10)
   --minstar INTEGER            Minimum number of stars (default=5)
   --search TEXT                search code at dependents
