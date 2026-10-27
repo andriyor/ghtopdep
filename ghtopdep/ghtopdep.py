@@ -128,6 +128,12 @@ def get_page_urls(sess, url, destination, all_packages, package_name=None):
     return ["{0}&{1}".format(page_url, urlencode({"package_id": package_id})) for _, package_id in packages]
 
 
+def parse_repo_url(url):
+    url = url.rstrip("/").removesuffix(".git")
+    owner, repository = urlparse(url).path[1:].split("/")
+    return url, owner, repository
+
+
 def get_max_deps(sess, url):
     main_response = sess.get(url)
     parsed_node = LexborHTMLParser(main_response.text)
@@ -162,7 +168,7 @@ def cli(url, repositories, search, table, rows, minstar, report, description, al
     if MODE == "development":
         BASE_URL = 'http://127.0.0.1:3000'
 
-    owner, repository = urlparse(url).path[1:].split("/")
+    url, owner, repository = parse_repo_url(url)
 
     if report:
         try:
