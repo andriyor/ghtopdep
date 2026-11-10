@@ -48,7 +48,10 @@ def show_result(repos, total_repos_count, more_than_zero_count, destinations, ta
 
 def parse_repo_url(url):
     url = url.rstrip("/").removesuffix(".git")
-    owner, repository = urlparse(url).path[1:].split("/")
+    parts = urlparse(url).path[1:].split("/")
+    if len(parts) != 2 or not all(parts):
+        raise click.BadParameter("expected a repository URL like https://github.com/<owner>/<repo>", param_hint="URL")
+    owner, repository = parts
     return url, owner, repository
 
 
